@@ -25,8 +25,18 @@ const[{author, lines, title}] = data
 output +=
 //make h2 title
   makeTag('h2')(title) + 
+
 // make h3 and emphasized "by name"
   pipe(makeTag(`em`), makeTag(`h3`))(`by ` + author)
+
+//create line breaks for each line
+const joinLines = arr => arr.join(`<br/>`)
+const splitLines = str => str.split(`<br/><br/>`)
+
+//split stanzas into paragraphs
+const makeParagraphText = pipe(joinLines, splitLines)
+const makeParagraph = makeTag(`p`)
+console.log(makeParagraphText(lines))
 
 console.log(data)
 
