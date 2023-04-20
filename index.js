@@ -7,9 +7,32 @@ const getJSON = url => fetch(url).then(res => res.json())
 const pipe = (...fns) => firstArg => fns.reduce((returnValue, fn) => fn(returnValue), firstArg)
 
 const makeTag = tag => str => `<${tag}>${str}</${tag}>`
-
+/*Need:
+One makeTag
+One Pipe
+Single string of:
+H2 title
+H3 em "by " + name
+p for each stanza
+lb for every line but the last
+*/
 // complete this function
-const makePoemHTML = () => {}
+
+const makePoemHTML = (data) => {
+var output = ''
+const[{author, lines, title}] = data
+
+output +=
+//make h2 title
+  makeTag('h2')(title) + 
+// make h3 and emphasized "by name"
+  pipe(makeTag(`em`), makeTag(`h3`))(`by ` + author)
+
+console.log(data)
+
+return output
+
+}
 
 // attach a click event to #get-poem
 getPoemBtn.onclick = async function() {
