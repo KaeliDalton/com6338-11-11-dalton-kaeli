@@ -38,6 +38,13 @@ const makeParagraphText = pipe(joinLines, splitLines)
 const makeParagraph = makeTag(`p`)
 console.log(makeParagraphText(lines))
 
+//turn poem into a string of HTML
+const paraArray = makeParagraphText(lines).map(str => makeParagraph(str))
+const poemString = paraArray.join(``)
+
+output +=
+  poemString
+
 console.log(data)
 
 return output
